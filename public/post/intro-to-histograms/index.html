@@ -39,11 +39,11 @@
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/apple-touch-icon.png">
 
-  <link rel="canonical" href="">
+  <link rel="canonical" href="/post/intro-to-histograms/">
 
   
 
-  <title>404 Page not found | Chris&#39; Data Science Blog</title>
+  <title>Intro to Histograms | Chris&#39; Data Science Blog</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#navbar-main" data-offset="71">
@@ -149,62 +149,151 @@
   </div>
 </nav>
 
-<div class="container">
 
-  <h1>Page not found</h1>
-  <p>Maybe you were looking for one of these?</p>
+<article class="article" itemscope itemtype="http://schema.org/Article">
 
-  <h2>Recent Posts</h2>
-  
-  <ul>
-    <li><a href="/post/intro-to-histograms/">Intro to Histograms</a></li>
-  </ul>
-  
-  <ul>
-    <li><a href="/post/">Posts</a></li>
-  </ul>
-  
-  <ul>
-    <li><a href="/post/getting-started/">Getting started with the Academic framework for Hugo</a></li>
-  </ul>
-  
-  <ul>
-    <li><a href="/post/widgets/">Customizing the homepage with widgets</a></li>
-  </ul>
-  
-  <ul>
-    <li><a href="/post/managing-content/">Managing content</a></li>
-  </ul>
-  
-  <ul>
-    <li><a href="/post/writing-markdown-latex/">Writing content with Markdown, LaTeX, and Shortcodes</a></li>
-  </ul>
-  
-  <ul>
-    <li><a href="/post/2015-07-23-r-rmarkdown/">Hello R Markdown</a></li>
-  </ul>
-  
-  <ul>
-    <li><a href="/post/migrate-from-jekyll/">Migrate from Jekyll to Hugo</a></li>
-  </ul>
   
 
-  <h2>Recent Publications</h2>
+
+  <div class="article-container">
+    <h1 itemprop="name">Intro to Histograms</h1>
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    
+    <time datetime="2017-10-02 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+      Oct 2, 2017
+    </time>
+  </span>
+
   
-  <ul>
-    <li><a href="/publication/">Publications</a></li>
-  </ul>
   
-  <ul>
-    <li><a href="/publication/person-re-identification/">A Person Re-Identification System For Mobile Devices</a></li>
-  </ul>
   
-  <ul>
-    <li><a href="/publication/clothing-search/">Mobile visual clothing search</a></li>
+  
+
+  
+  
+  
+  <span class="article-tags">
+    <i class="fa fa-tags"></i>
+    
+    <a href="/tags/data-science">Data Science</a
+    >, 
+    
+    <a href="/tags/histograms">Histograms</a
+    >, 
+    
+    <a href="/tags/data">Data</a
+    >
+    
+  </span>
+  
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=Intro%20to%20Histograms&amp;url=%2fpost%2fintro-to-histograms%2f"
+         target="_blank">
+        <i class="fa fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2fintro-to-histograms%2f"
+         target="_blank">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2fintro-to-histograms%2f&amp;title=Intro%20to%20Histograms"
+         target="_blank">
+        <i class="fa fa-linkedin"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2fintro-to-histograms%2f&amp;title=Intro%20to%20Histograms"
+         target="_blank">
+        <i class="fa fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=Intro%20to%20Histograms&amp;body=%2fpost%2fintro-to-histograms%2f">
+        <i class="fa fa-envelope"></i>
+      </a>
+    </li>
   </ul>
+</div>
+
+
   
 
 </div>
+
+    <div class="article-style" itemprop="articleBody">
+      <p>Let’s construct a histogram! First, let’s upload the three essential libraries: Lahman, sqldf, and ggplot2. Next, let’s establish and run a query to see the difference in weight amongst those in the MLB. Once we have set up and ran our query we will find the different weights of all the players in a column in the console of Rstudio. However, wouldn’t it be nice to see the results in a visual manner? How about a histogram?</p>
+<pre class="r"><code>library(Lahman)
+library(ggplot2) 
+library(sqldf) </code></pre>
+<pre><code>## Loading required package: gsubfn</code></pre>
+<pre><code>## Loading required package: proto</code></pre>
+<pre><code>## Warning in doTryCatch(return(expr), name, parentenv, handler): unable to load shared object &#39;/Library/Frameworks/R.framework/Resources/modules//R_X11.so&#39;:
+##   dlopen(/Library/Frameworks/R.framework/Resources/modules//R_X11.so, 6): Library not loaded: /opt/X11/lib/libSM.6.dylib
+##   Referenced from: /Library/Frameworks/R.framework/Resources/modules//R_X11.so
+##   Reason: image not found</code></pre>
+<pre><code>## Could not load tcltk.  Will use slower R code instead.</code></pre>
+<pre><code>## Loading required package: RSQLite</code></pre>
+<pre class="r"><code># extracting the data-------------------
+
+query&lt;-&quot;SELECT weight
+FROM Master&quot;
+
+result&lt;-sqldf(query)</code></pre>
+<p>In order to set up a histogram, we need to run a ‘ggplot,’ to do this, and allow for further modifications on the histogram, we must run the ggplot as ‘ggplot()+.’ On the next line, we run ‘geom_histogram’ and plug in the data of the histogram inside following parentheses such as the weight itself ‘data=result’ and their accompanying bars, the color of the bars that represent the data’color=purple,‘’fill=green,’ the syntax of the x-axis ‘aes(x=weight),’ and the specificity of the weight on the x-axis ‘bins=40.’ Finally, to put your mark on the histogram, put a ‘+’ sign at the end of the preceding line of syntax, to allow for a title to be placed on the histogram. On the next line run ‘ggtitle’ and in parentheses what you would like the title to be, in this case I used ‘Body Weight Distribution for Baseball Players.’</p>
+<pre class="r"><code># visualizing the data----------------
+
+ggplot()+
+  geom_histogram(data=result,aes(x=weight),color=&quot;purple&quot;,fill=&quot;green&quot;,bins=40)+
+  ggtitle(&quot;Body Weight Distribution for Baseball Players&quot;)</code></pre>
+<pre><code>## Warning: Removed 854 rows containing non-finite values (stat_bin).</code></pre>
+<p><img src="/post/2017-10-02-intro-to-histograms_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>And that is how you do it! If you have any questions feel free to contact me and tune in for more exciting posts about the wonderous world of Rstudio and Data Science!</p>
+
+    </div>
+  </div>
+
+</article>
+
+
+
+
+<div class="container">
+  <nav>
+  <ul class="pager">
+    
+    <li class="previous"><a href="/post/getting-started/"><span
+      aria-hidden="true">&larr;</span> Getting started with the Academic framework for Hugo</a></li>
+    
+
+    
+  </ul>
+</nav>
+
+</div>
+
+<div class="article-container">
+  
+
+</div>
+
 <footer class="site-footer">
   <div class="container">
     <p class="powered-by">
