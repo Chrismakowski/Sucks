@@ -86,15 +86,6 @@
     
     <url>
     
-      <loc>/post/managing-content/</loc>
-      <lastmod>2016-04-18T00:00:00-04:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
       <loc>/post/writing-markdown-latex/</loc>
       <lastmod>2016-04-17T00:00:00-04:00</lastmod>
     </url>
@@ -141,6 +132,14 @@
     <url>
     
       <loc>/post/getting-started/</loc>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/post/managing-content/</loc>
     </url>
     
   
