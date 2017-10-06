@@ -1,0 +1,35 @@
+---
+title: Time Series Fun!
+author: Chris Makowski
+date: '2017-10-06'
+slug: time-series-fun
+categories:
+  - Time Series
+  - Data Science
+  - Fun
+tags:
+  - Data Science
+  - Time Series
+---
+
+
+
+<p>Let’s construct a time series! First, let’s upload the three essential libraries: Lahman, sqldf, and ggplot2. Next, let’s establish and run a query to see how many homeruns throughout his illustrious career. To set up our query, we need to run the ‘yearID’ to record the years Ruth has played, and ‘HR’ for his homeruns all from ‘batting.’ Of course, we need to know Ruth’s name in the columns so we type the syntax, ‘WHERE playerID=’ruthba01.’’ Once we have set up and ran our query we will find Ruth’s career homerun totals in a column in the console of Rstudio. However, wouldn’t it be nice to see the results in a visual manner? How about a time series?</p>
+<pre class="r"><code>library(Lahman)
+library(ggplot2) 
+library(sqldf) 
+
+# extracting the data-------------------
+query&lt;-&quot;SELECT yearID, HR FROM Batting
+WHERE playerID=&#39;ruthba01&#39;&quot;
+ 
+result&lt;-sqldf(query)</code></pre>
+<p>In order to set up a time series, we need to run a ‘ggplot,’ to do this, and allow for further modifications on the time series, we must run the ggplot as ‘ggplot()+.’ On the next line, we run ‘geom_line()’ and plug in the data of the time series inside following parentheses to construct the line of the time series. Such information includes the HR’s represented in ‘data=result,’ the color of the line that represent the data ‘color=purple,’ the syntax of the x-axis and y-axis ‘aes(x=yearID,y=HR).’ Next, we need to create points on the line to represent the exact number for each year, put a ‘+’ sign at the end of the preceding line of syntax, and run ‘geom_point,’ in parantheses ‘data=result,’ the x and y-axis again aes(x=yearID,y=HR).‘To allow for a title to be placed on the time series, just as the histogram, place a’+‘sign at the end of the preceeding syntax and plug in ’ggtitle(),’ in this case let’s use ‘Ruth’s Homerun Totals Throughout His Career.’ Just to spice it up let’s re-name the x and y- axis, to do this we need to run ‘xlab,’ and on the next line ‘ylab,’ so we need to again type ‘+’ on the preceeding syntax. On ‘xlab’ let’s re-name ‘yearID’ to ‘Year’ and on the next line for ‘ylab’ let’s re-name it ‘Homeruns.’</p>
+<pre class="r"><code># visualizing the data----------------
+ggplot()+
+   geom_line(data=result,aes(x=yearID,y=HR),color=&quot;purple&quot;)+
+   geom_point(data=result,aes(x=yearID,y=HR))+
+   ggtitle(&quot;Ruth&#39;s Homerun Totals Throughout His Career&quot;)+
+   xlab(&quot;Year&quot;)+
+   ylab(&quot;Homeruns&quot;)</code></pre>
+<p><img src="/"/"  # End your URL with a `/` trailing slash, e.g. `https://dope-data-science-blog.netlify.com/`.post/2017-10-06-time-series-fun_files/figure-html/unnamed-chunk-2-1.png" width="672" /> And that is how you do it! If you have any questions feel free to contact me and tune in for more exciting posts about the wonderous world of Rstudio and Data Science!</p>
