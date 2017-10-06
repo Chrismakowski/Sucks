@@ -1,0 +1,39 @@
+---
+title: Scatterplot
+author: Chris Makowski
+date: '2017-10-06'
+slug: scatterplot
+categories:
+  - Data Science
+  - Scatterplot
+tags:
+  - Data Science
+  - Scatterplot
+---
+Let's construct a scatterplot! First, let's upload the three essential libraries: Lahman, sqldf, and ggplot2. Next, let's establish and run a query to see the relationship between Strikeouts and Homeruns of great hitters. To set up our query, we need to run the 'playerID' to find these sluggers, so to make sure we have great hitters, let's make sure the player we use have at least 400 homeruns. After, the 'playerID' we use 'sum(HR),' to calculate the sum of homeruns and for thier career plug in, 'AS career_HR.' On the same line let's plug in 'sum(SO)' and 'AS career_SO' to find the total of strikeouts for their career, and we find all of them in 'Batting.' Let's ensure we group this chart by the players so type in 'GROUP BY playerID,' and to find the total of homeruns plug in 'HAVING sum(HR)>=400.' Now we can find the totals in a column in the console of Rstudio. However, wouldn't it be nice to see the results in a visual manner? 
+```{r warning=FALSE,message=FALSE}
+library(Lahman)
+library(ggplot2) 
+library(sqldf) 
+
+# extracting the data----------------
+query<-"SELECT playerID,sum(HR) AS career_HR,sum(SO) AS career_SO
+FROM Batting
+GROUP BY playerID
+HAVING sum(HR)>=400"
+result<-sqldf(query)
+
+```
+In order to set up a scatterplot, we need to run a 'ggplot,' to do this, and allow for further modifications on the scatterplot, we must run the ggplot as 'ggplot()+.' On the next line, we run 'geom_point()' and plug in the data of the scatterplot inside following parentheses to construct the points of the scatterplot. Such information includes the HR's and SO's represented in 'data=result,' the syntax of the x-axis and y-axis 'aes(x=career_SO,y=career_HR),' the size of the points, and to keep them at a good size let's use 'size=3' while keeping them pretty with the color purple represented as 'color=purple.' To allow for a title to be placed on the scatterplot, just as the histogram, and time series, place a '+' sign at the end of the preceeding syntax and plug in 'ggtitle(),' in this case let's use 'Career Strikeouts VS Homeruns for Great Hitters.' Just to spice it up let's re-name the x and y- axis, to do this we need to run 'xlab,' and on the next line 'ylab,' so we need to again type '+' on the preceeding syntax. On 'xlab' let's re-name 'career_SO' to 'Career Strikeouts' and on the next line for 'career_HR' let's re-name it 'Career Homeruns.'
+```{r}
+#visualize the data------------------
+
+ggplot()+
+  geom_point(data=result,aes(x=career_SO,y=career_HR),size=3,color="purple")+
+  ggtitle("Career Strikeouts VS Homeruns for Great Hitters")+
+  xlab("Career Strikeouts")+
+  ylab("Career Homeruns")
+
+```
+And that is how you do it! If you have any questions feel free to contact me and tune in for more exciting posts about the wonderous world of Rstudio and Data Science!
+
