@@ -11,6 +11,63 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Scatterplot</title>
+      <link>/post/scatterplot/</link>
+      <pubDate>Fri, 06 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/scatterplot/</guid>
+      <description>&lt;p&gt;Let’s construct a scatterplot! First, let’s upload the three essential libraries: Lahman, sqldf, and ggplot2. Next, let’s establish and run a query to see the relationship between Strikeouts and Homeruns of great hitters. To set up our query, we need to run the ‘playerID’ to find these sluggers, so to make sure we have great hitters, let’s make sure the player we use have at least 400 homeruns. After, the ‘playerID’ we use ‘sum(HR),’ to calculate the sum of homeruns and for thier career plug in, ‘AS career_HR.’ On the same line let’s plug in ‘sum(SO)’ and ‘AS career_SO’ to find the total of strikeouts for their career, and we find all of them in ‘Batting.’ Let’s ensure we group this chart by the players so type in ‘GROUP BY playerID,’ and to find the total of homeruns plug in ‘HAVING sum(HR)&amp;gt;=400.’ Now we can find the totals in a column in the console of Rstudio. However, wouldn’t it be nice to see the results in a visual manner?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(Lahman)
+library(ggplot2) 
+library(sqldf) 
+
+# extracting the data----------------
+query&amp;lt;-&amp;quot;SELECT playerID,sum(HR) AS career_HR,sum(SO) AS career_SO
+FROM Batting
+GROUP BY playerID
+HAVING sum(HR)&amp;gt;=400&amp;quot;
+result&amp;lt;-sqldf(query)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In order to set up a scatterplot, we need to run a ‘ggplot,’ to do this, and allow for further modifications on the scatterplot, we must run the ggplot as ‘ggplot()+.’ On the next line, we run ‘geom_point()’ and plug in the data of the scatterplot inside following parentheses to construct the points of the scatterplot. Such information includes the HR’s and SO’s represented in ‘data=result,’ the syntax of the x-axis and y-axis ‘aes(x=career_SO,y=career_HR),’ the size of the points, and to keep them at a good size let’s use ‘size=3’ while keeping them pretty with the color purple represented as ‘color=purple.’ To allow for a title to be placed on the scatterplot, just as the histogram, and time series, place a ‘+’ sign at the end of the preceeding syntax and plug in ‘ggtitle(),’ in this case let’s use ‘Career Strikeouts VS Homeruns for Great Hitters.’ Just to spice it up let’s re-name the x and y- axis, to do this we need to run ‘xlab,’ and on the next line ‘ylab,’ so we need to again type ‘+’ on the preceeding syntax. On ‘xlab’ let’s re-name ‘career_SO’ to ‘Career Strikeouts’ and on the next line for ‘career_HR’ let’s re-name it ‘Career Homeruns.’&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#visualize the data------------------
+
+ggplot()+
+  geom_point(data=result,aes(x=career_SO,y=career_HR),size=3,color=&amp;quot;purple&amp;quot;)+
+  ggtitle(&amp;quot;Career Strikeouts VS Homeruns for Great Hitters&amp;quot;)+
+  xlab(&amp;quot;Career Strikeouts&amp;quot;)+
+  ylab(&amp;quot;Career Homeruns&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;//&#34;/&#34;  # End your URL with a `/` trailing slash, e.g. `https://dope-data-science-blog.netlify.com/`.post/2017-10-06-scatterplot_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt; And that is how you do it! If you have any questions feel free to contact me and tune in for more exciting posts about the wonderous world of Rstudio and Data Science!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Time Series Fun!</title>
+      <link>/post/time-series-fun/</link>
+      <pubDate>Fri, 06 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/time-series-fun/</guid>
+      <description>&lt;p&gt;Let’s construct a time series! First, let’s upload the three essential libraries: Lahman, sqldf, and ggplot2. Next, let’s establish and run a query to see how many homeruns Babe Ruth has had throughout his illustrious career. To set up our query, we need to run the ‘yearID’ to record the years Ruth has played, and ‘HR’ for his homeruns all from ‘batting.’ Of course, we need to know Ruth’s name in the columns so we type the syntax, ‘WHERE playerID=’ruthba01.’’ Once we have set up and ran our query we will find Ruth’s career homerun totals in a column in the console of Rstudio. However, wouldn’t it be nice to see the results in a visual manner? How about a time series?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(Lahman)
+library(ggplot2) 
+library(sqldf) 
+
+# extracting the data-------------------
+query&amp;lt;-&amp;quot;SELECT yearID, HR FROM Batting
+WHERE playerID=&amp;#39;ruthba01&amp;#39;&amp;quot;
+ 
+result&amp;lt;-sqldf(query)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In order to set up a time series, we need to run a ‘ggplot,’ to do this, and allow for further modifications on the time series, we must run the ggplot as ‘ggplot()+.’ On the next line, we run ‘geom_line()’ and plug in the data of the time series inside following parentheses to construct the line of the time series. Such information includes the HR’s represented in ‘data=result,’ the color of the line that represent the data ‘color=purple,’ the syntax of the x-axis and y-axis ‘aes(x=yearID,y=HR).’ Next, we need to create points on the line to represent the exact number for each year, put a ‘+’ sign at the end of the preceding line of syntax, and run ‘geom_point,’ in parantheses ‘data=result,’ the x and y-axis again aes(x=yearID,y=HR).‘To allow for a title to be placed on the time series, just as the histogram, place a’+‘sign at the end of the preceeding syntax and plug in ’ggtitle(),’ in this case let’s use ‘Ruth’s Homerun Totals Throughout His Career.’ Just to spice it up let’s re-name the x and y- axis, to do this we need to run ‘xlab,’ and on the next line ‘ylab,’ so we need to again type ‘+’ on the preceeding syntax. On ‘xlab’ let’s re-name ‘yearID’ to ‘Year’ and on the next line for ‘ylab’ let’s re-name it ‘Homeruns.’&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# visualizing the data----------------
+ggplot()+
+   geom_line(data=result,aes(x=yearID,y=HR),color=&amp;quot;purple&amp;quot;)+
+   geom_point(data=result,aes(x=yearID,y=HR))+
+   ggtitle(&amp;quot;Ruth&amp;#39;s Homerun Totals Throughout His Career&amp;quot;)+
+   xlab(&amp;quot;Year&amp;quot;)+
+   ylab(&amp;quot;Homeruns&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;//&#34;/&#34;  # End your URL with a `/` trailing slash, e.g. `https://dope-data-science-blog.netlify.com/`.post/2017-10-06-time-series-fun_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt; And that is how you do it! If you have any questions feel free to contact me and tune in for more exciting posts about the wonderous world of Rstudio and Data Science!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Intro to Histograms</title>
       <link>/post/intro-to-histograms/</link>
       <pubDate>Mon, 02 Oct 2017 00:00:00 +0000</pubDate>
@@ -41,65 +98,8 @@ ggplot()+
   geom_histogram(data=result,aes(x=weight),color=&amp;quot;purple&amp;quot;,fill=&amp;quot;green&amp;quot;,bins=40)+
   ggtitle(&amp;quot;Body Weight Distribution for Baseball Players&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Warning: Removed 854 rows containing non-finite values (stat_bin).&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2017-10-02-intro-to-histograms_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;//&#34;/&#34;  # End your URL with a `/` trailing slash, e.g. `https://dope-data-science-blog.netlify.com/`.post/2017-10-02-intro-to-histograms_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;And that is how you do it! If you have any questions feel free to contact me and tune in for more exciting posts about the wonderous world of Rstudio and Data Science!&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Example Talk</title>
-      <link>/talk/example-talk/</link>
-      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/talk/example-talk/</guid>
-      <description>&lt;p&gt;Embed your slides or video here using &lt;a href=&#34;https://gcushen.github.io/hugo-academic-demo/post/writing-markdown-latex/&#34; target=&#34;_blank&#34;&gt;shortcodes&lt;/a&gt;. Further details can easily be added using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Deep Learning</title>
-      <link>/project/deep-learning/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/project/deep-learning/</guid>
-      <description>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
-
-&lt;p&gt;Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p&gt;
-
-&lt;p&gt;Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p&gt;
-
-&lt;p&gt;Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p&gt;
-
-&lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>External Project</title>
-      <link>/project/example-external-project/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/project/example-external-project/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>A Person Re-Identification System For Mobile Devices</title>
-      <link>/publication/person-re-identification/</link>
-      <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
-      
-      <guid>/publication/person-re-identification/</guid>
-      <description>&lt;p&gt;More detail can easily be written here using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Mobile visual clothing search</title>
-      <link>/publication/clothing-search/</link>
-      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
-      
-      <guid>/publication/clothing-search/</guid>
-      <description>&lt;p&gt;More detail can easily be written here using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
 </description>
     </item>
     
