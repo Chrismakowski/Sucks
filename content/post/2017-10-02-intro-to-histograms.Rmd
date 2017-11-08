@@ -22,6 +22,7 @@ FROM Master"
 result<-sqldf(query)
 ```
 In order to set up a histogram, we need to run a 'ggplot,' to do this, and allow for further modifications on the histogram, we must run the ggplot as 'ggplot()+.' On the next line, we run 'geom_histogram' and plug in the data of the histogram inside following parentheses such as the weight itself 'data=result' and their accompanying bars, the color of the bars that represent the data'color=purple,' 'fill=green,' the syntax of the x-axis 'aes(x=weight),' and the specificity of the weight on the x-axis 'bins=40.' Finally, to put your mark on the histogram, put a '+' sign at the end of the preceding line of syntax, to allow for a title to be placed on the histogram. On the next line run 'ggtitle' and in parentheses what you would like the title to be, in this case I used 'Body Weight Distribution for Baseball Players.'
+
 ```{r}
 # visualizing the data----------------
 

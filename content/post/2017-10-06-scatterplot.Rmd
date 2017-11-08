@@ -25,6 +25,7 @@ result<-sqldf(query)
 
 ```
 In order to set up a scatterplot, we need to run a 'ggplot,' to do this, and allow for further modifications on the scatterplot, we must run the ggplot as 'ggplot()+.' On the next line, we run 'geom_point()' and plug in the data of the scatterplot inside following parentheses to construct the points of the scatterplot. Such information includes the HR's and SO's represented in 'data=result,' the syntax of the x-axis and y-axis 'aes(x=career_SO,y=career_HR),' the size of the points, and to keep them at a good size let's use 'size=3' while keeping them pretty with the color purple represented as 'color=purple.' To allow for a title to be placed on the scatterplot, just as the histogram, and time series, place a '+' sign at the end of the preceeding syntax and plug in 'ggtitle(),' in this case let's use 'Career Strikeouts VS Homeruns for Great Hitters.' Just to spice it up let's re-name the x and y- axis, to do this we need to run 'xlab,' and on the next line 'ylab,' so we need to again type '+' on the preceeding syntax. On 'xlab' let's re-name 'career_SO' to 'Career Strikeouts' and on the next line for 'career_HR' let's re-name it 'Career Homeruns.'
+
 ```{r}
 #visualize the data------------------
 
@@ -35,5 +36,6 @@ ggplot()+
   ylab("Career Homeruns")
 
 ```
+
 And that is how you do it! If you have any questions feel free to contact me and tune in for more exciting posts about the wonderous world of Rstudio and Data Science!
 

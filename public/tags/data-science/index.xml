@@ -35,7 +35,8 @@ ggplot()+
   ggtitle(&amp;quot;Career Strikeouts VS Homeruns for Great Hitters&amp;quot;)+
   xlab(&amp;quot;Career Strikeouts&amp;quot;)+
   ylab(&amp;quot;Career Homeruns&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;//&#34;/&#34;  # End your URL with a `/` trailing slash, e.g. `https://dope-data-science-blog.netlify.com/`.post/2017-10-06-scatterplot_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt; And that is how you do it! If you have any questions feel free to contact me and tune in for more exciting posts about the wonderous world of Rstudio and Data Science!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2017-10-06-scatterplot_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;And that is how you do it! If you have any questions feel free to contact me and tune in for more exciting posts about the wonderous world of Rstudio and Data Science!&lt;/p&gt;
 </description>
     </item>
     
@@ -63,7 +64,8 @@ ggplot()+
    ggtitle(&amp;quot;Ruth&amp;#39;s Homerun Totals Throughout His Career&amp;quot;)+
    xlab(&amp;quot;Year&amp;quot;)+
    ylab(&amp;quot;Homeruns&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;//&#34;/&#34;  # End your URL with a `/` trailing slash, e.g. `https://dope-data-science-blog.netlify.com/`.post/2017-10-06-time-series-fun_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt; And that is how you do it! If you have any questions feel free to contact me and tune in for more exciting posts about the wonderous world of Rstudio and Data Science!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2017-10-06-time-series-fun_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;And that is how you do it! If you have any questions feel free to contact me and tune in for more exciting posts about the wonderous world of Rstudio and Data Science!&lt;/p&gt;
 </description>
     </item>
     
@@ -98,7 +100,7 @@ ggplot()+
   geom_histogram(data=result,aes(x=weight),color=&amp;quot;purple&amp;quot;,fill=&amp;quot;green&amp;quot;,bins=40)+
   ggtitle(&amp;quot;Body Weight Distribution for Baseball Players&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Warning: Removed 854 rows containing non-finite values (stat_bin).&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;//&#34;/&#34;  # End your URL with a `/` trailing slash, e.g. `https://dope-data-science-blog.netlify.com/`.post/2017-10-02-intro-to-histograms_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2017-10-02-intro-to-histograms_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;And that is how you do it! If you have any questions feel free to contact me and tune in for more exciting posts about the wonderous world of Rstudio and Data Science!&lt;/p&gt;
 </description>
     </item>
