@@ -39,11 +39,11 @@
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/apple-touch-icon.png">
 
-  <link rel="canonical" href="">
+  <link rel="canonical" href="/post/let-s-check-out-a-barplot/">
 
   
 
-  <title>404 Page not found | Chris&#39; Data Science Blog</title>
+  <title>Let’s Check Out a Barplot! | Chris&#39; Data Science Blog</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#navbar-main" data-offset="71">
@@ -149,38 +149,174 @@
   </div>
 </nav>
 
-<div class="container">
 
-  <h1>Page not found</h1>
-  <p>Maybe you were looking for one of these?</p>
+<article class="article" itemscope itemtype="http://schema.org/Article">
 
-  <h2>Recent Posts</h2>
-  
-  <ul>
-    <li><a href="/post/let-s-check-out-a-barplot/">Let’s Check Out a Barplot!</a></li>
-  </ul>
-  
-  <ul>
-    <li><a href="/post/scatterplot/">Scatterplot</a></li>
-  </ul>
-  
-  <ul>
-    <li><a href="/post/time-series-fun/">Time Series Fun!</a></li>
-  </ul>
-  
-  <ul>
-    <li><a href="/post/intro-to-histograms/">Intro to Histograms</a></li>
-  </ul>
-  
-  <ul>
-    <li><a href="/post/">Posts</a></li>
-  </ul>
   
 
-  <h2>Recent Publications</h2>
+
+  <div class="article-container">
+    <h1 itemprop="name">Let’s Check Out a Barplot!</h1>
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    
+    <time datetime="2017-11-14 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+      Nov 14, 2017
+    </time>
+  </span>
+
+  
+  
+  
+  <span class="article-categories">
+    <i class="fa fa-folder"></i>
+    
+    <a href="/categories/barplot">Barplot</a
+    >, 
+    
+    <a href="/categories/data-science">Data Science</a
+    >, 
+    
+    <a href="/categories/fun">Fun</a
+    >
+    
+  </span>
+  
+  
+
+  
+  
+  
+  <span class="article-tags">
+    <i class="fa fa-tags"></i>
+    
+    <a href="/tags/data-science">Data Science</a
+    >, 
+    
+    <a href="/tags/barplot">Barplot</a
+    >
+    
+  </span>
+  
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=Let%e2%80%99s%20Check%20Out%20a%20Barplot%21&amp;url=%2fpost%2flet-s-check-out-a-barplot%2f"
+         target="_blank">
+        <i class="fa fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2flet-s-check-out-a-barplot%2f"
+         target="_blank">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2flet-s-check-out-a-barplot%2f&amp;title=Let%e2%80%99s%20Check%20Out%20a%20Barplot%21"
+         target="_blank">
+        <i class="fa fa-linkedin"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2flet-s-check-out-a-barplot%2f&amp;title=Let%e2%80%99s%20Check%20Out%20a%20Barplot%21"
+         target="_blank">
+        <i class="fa fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=Let%e2%80%99s%20Check%20Out%20a%20Barplot%21&amp;body=%2fpost%2flet-s-check-out-a-barplot%2f">
+        <i class="fa fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
   
 
 </div>
+
+    <div class="article-style" itemprop="articleBody">
+      <p>Let’s construct a barplot! To start, let’s install the three essential libraries: Lahman, sqldf, and ggplot2. Next, let’s establish a query so our barplot can have something to represent. Let’s ask how many homeruns were recorded by each MLB team during the 1980’s season. To set up our query we need to find how many homeruns were recorded and the name of each team during the year 1980, but let’s make sure our barplot is ordered efficiently. So we are going to have each bar represent the amount of homeruns. That extracted data should look something like this:</p>
+<pre class="r"><code>library(Lahman)
+library(sqldf)
+library(ggplot2)
+
+#extracting the data------------
+
+query&lt;-&quot;SELECT name,HR
+FROM Teams
+WHERE yearID=1980
+ORDER BY HR&quot;
+
+result&lt;-sqldf(query)</code></pre>
+<p>In order to visualize the barplot we need to run ggplot, and in order to do this we must run the ggplot as ‘ggplot()+.’ On the next line, we run ‘geom_line()’ and plug in the data of the barplot inside following parentheses to construct the bar of the barplot. The information to be provided includes: the results of the query (‘data=result’), the x and y axis (‘aes(x=name,y=HR’)), the statistics (‘stat=’identity’‘), and for flare: the color of the line (’color=’pink’‘), and the color of the bar (’fill=’light blue’‘). Thus is what one needs for a visualization of the data, however, let’s spice it up even more. To begin, place a’+‘symbol at the end of the syntax of ggplot to allow for further modifications. Now, let’s have the data represented on the x and y axis flipped so the data can be read horizontally (’coord_flip()’), and add a ‘+’ at the end for more additions. To re-write the x and y axis to something more pleasing like ‘Homeruns’ on the x-axis use ‘xlab(’Homeruns’)+‘and ’Teams’ on the y-axis use ‘ylab(’Teams’)‘. Use one more’+‘so we can add a title and to add a title all you need to write is ’ggtitle()’ and inside the parantheses let’s say ‘1980 Team Homerun Distribution’. Just one more thing, to tidy up our barplot and make it look professional, let’s ensure the data is shown in descending order. To do this you need to write ‘result<span class="math inline">\(name&lt;-factor(result\)</span>name,levels=result$name),’ and place it before the ‘ggplot()’. And all together it shoud look like this:</p>
+<pre class="r"><code>#visualizing the data------------
+
+result$name&lt;-factor(result$name,levels=result$name)
+
+ggplot()+
+  geom_bar(data=result,aes(x=name,y=HR),stat=&#39;identity&#39;,color=&#39;pink&#39;,fill=&#39;light blue&#39;)+
+  coord_flip()+
+  ylab(&#39;Homeruns&#39;)+
+  xlab(&#39;Teams&#39;)+
+  ggtitle(&quot;1980 Team Homerun Distribution&quot;)</code></pre>
+<p><img src="/post/2017-11-14-let-s-check-out-a-barplot_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>And that is how you do it! If you have any questions feel free to contact me and tune in for more exciting posts about the wonderous world of Rstudio and Data Science!</p>
+
+    </div>
+  </div>
+
+</article>
+
+
+
+<div class="article-container">
+  <h3>Related</h3>
+  <ul>
+    
+    <li><a href="/post/scatterplot/">Scatterplot</a></li>
+    
+    <li><a href="/post/time-series-fun/">Time Series Fun!</a></li>
+    
+    <li><a href="/post/intro-to-histograms/">Intro to Histograms</a></li>
+    
+  </ul>
+</div>
+
+
+<div class="container">
+  <nav>
+  <ul class="pager">
+    
+    <li class="previous"><a href="/post/scatterplot/"><span
+      aria-hidden="true">&larr;</span> Scatterplot</a></li>
+    
+
+    
+  </ul>
+</nav>
+
+</div>
+
+<div class="article-container">
+  
+
+</div>
+
 <footer class="site-footer">
   <div class="container">
     <p class="powered-by">
